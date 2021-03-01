@@ -11,7 +11,7 @@ function verifyN(num, numss) {
     return false;
 }
 
-function game(ng) {
+function game(ng, ngm) {
     var nums = [];
     var numInseriti = [];
     var numDaInserire = [];
@@ -19,7 +19,7 @@ function game(ng) {
     var punti = 0;
 
     //assegnazione valori random e verifica di ripetizione.
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < ngm; i++) {
 
         do {
             nums[i] = Math.floor(Math.random() * ng) + 1;
@@ -39,7 +39,7 @@ function game(ng) {
 
     console.log(nums);
 
-    for (j = 0; j < ng - 16; j++) {
+    for (j = 0; j < ng - ngm; j++) {
         console.log(j);
         //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
         do {
@@ -75,7 +75,7 @@ function game(ng) {
         
                 }
         
-                if ((numInseriti[j] < 1) || (numInseriti[j] > ng)) {
+                if ((numInseriti[j] < 1) || (numInseriti[j] > ng) || (isNaN(numInseriti[j]))) {
                     alert("Il valore numerico inserito e' incorretto! Deve essere un valore numerico tra 1 e " + ng + "!");
                     v = 1;
                 }
@@ -98,33 +98,41 @@ function game(ng) {
 
 
 //inizio
-var numGame;
+var numGame, numGameMine;
 
 var lv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
 
 switch (lv) {
      case 0:
         numGame = 100;
+        numGameMine = 16;
         break;
 
     case 1:
         numGame = 80;
+        numGameMine = 16;
         break;
 
     case 2:
         numGame = 50;
+        numGameMine = 16;
         break;
 
     case 999:
 
         do {
-            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 17 e maggiore di 500.") * 1;
-        } while ((numGame < 17) || (numGame > 500));
+            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 10 e maggiore di 500. Piu' e' grande il valore che digiti, piu' punti fai!") * 1;
+        } while ((numGame < 10) || (numGame > 500));
+
+        do {
+            numGameMine = prompt("Digita il numero di mine che vuoi piantare nel gioco. Ricorda che il numero di mine deve essere minore di " + numGame + ".") * 1;
+        } while (numGameMine > numGame - 1);
 
         break;
 
     default:
         numGame = 100;
+        numGameMine = 16;
 }
 
-alert('Punti: ' + game(numGame) + '.');
+alert('Punti: ' + game(numGame, numGameMine) + '.');
