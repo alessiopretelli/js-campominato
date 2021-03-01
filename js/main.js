@@ -11,18 +11,40 @@ function verifyN(num, numss) {
     return false;
 }
 
-function game(nums, ng) {
+function game(ng) {
+    var nums = [];
     var numInseriti = [];
     var numDaInserire = [];
+    var v;
     var punti = 0;
+
+    //assegnazione valori random e verifica di ripetizione.
+    for (i = 0; i < 16; i++) {
+
+        do {
+            nums[i] = Math.floor(Math.random() * ng) + 1;
+            v = 0;
+
+            for (ii = 0; ii < i; ii++) {
+
+                if (nums[i] == nums[ii]) {
+                    v = 1;
+                }
+
+            }
+
+        } while (v == 1);
+
+    }
+
+    console.log(nums);
 
     for (j = 0; j < ng - 16; j++) {
         console.log(j);
         //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
         do {
                 numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
-                var v = 0;
-                console.log(numInseriti.length);
+                v = 0;
 
                 for (jj = 0; jj < j; jj++) {
                     
@@ -67,17 +89,16 @@ function game(nums, ng) {
         } 
         
          punti += 1;
-         console.log(punti);
     }
     
     alert('Hai vinto!');
+    console.log(numInseriti);
     return punti;
 }
 
-var nums = [];
 var v, numGame;
 
-var lvv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
+var lvv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
 
 switch (lvv) {
      case 0:
@@ -92,29 +113,16 @@ switch (lvv) {
         numGame = 50;
         break;
 
+    case 999:
+
+        do {
+            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 33 e maggiore di 500.");
+        } while ((numGame < 33) || (numGame > 500));
+
+        break;
+
     default:
         numGame = 100;
 }
 
-//assegnazione valori e verifica di non ripetizione di valori random.
-for (i = 0; i < 16; i++) {
-
-    do {
-        nums[i] = Math.floor(Math.random() * numGame) + 1;
-        v = 0;
-
-        for (ii = 0; ii < i; ii++) {
-
-            if (nums[i] == nums[ii]) {
-                v = 1;
-            }
-
-        }
-
-    } while (v == 1);
-
-}
-
-console.log(nums);
-
-alert('Punti: ' + game(nums, numGame) + '.');
+alert('Punti: ' + game(numGame) + '.');
