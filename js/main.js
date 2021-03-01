@@ -96,11 +96,13 @@ function game(ng) {
     return punti;
 }
 
-var v, numGame;
 
-var lvv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
+//inizio
+var numGame;
 
-switch (lvv) {
+var lv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
+
+switch (lv) {
      case 0:
         numGame = 100;
         break;
@@ -116,8 +118,8 @@ switch (lvv) {
     case 999:
 
         do {
-            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 33 e maggiore di 500.");
-        } while ((numGame < 33) || (numGame > 500));
+            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 17 e maggiore di 500.") * 1;
+        } while ((numGame < 17) || (numGame > 500));
 
         break;
 
