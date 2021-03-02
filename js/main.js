@@ -1,5 +1,4 @@
 function verifyN(num, numss) {
-    console.log(num);
     for (i = 0; i < numss.length; i++) {
 
         if (num == numss[i]) {
@@ -9,6 +8,35 @@ function verifyN(num, numss) {
     }
 
     return false;
+}
+
+function suntoDelGioco(n, ni, g) {
+    var sdg = [];
+
+    for (z = 1; z <= g; z++) {
+        sdg[z] = z;
+        
+        for (zzz = 0; zzz < ni.length; zzz++) {
+
+            if (sdg[z] == ni[zzz]) {
+                    sdg[z] = "[" + z + "]";
+            } else {
+
+                for (zz = 0; zz < n.length; zz++) {
+
+                    if (sdg[z] == n[zz]) {
+                        sdg[z] = "☻";
+                    }
+            
+                }
+        
+            }
+        
+        }
+
+    }
+
+    return sdg;
 }
 
 function game(ng, ngm) {
@@ -40,7 +68,6 @@ function game(ng, ngm) {
         console.log(nums);
 
         for (j = 0; j < ng - ngm; j++) {
-            console.log(j);
             //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
             do {
                 numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
@@ -83,8 +110,9 @@ function game(ng, ngm) {
             } while (v == 1);
             
             if (verifyN(numInseriti[j], nums)) {
-                alert('Hai perso.');
+                alert('Ouch! Hai perso.');
                 console.log(numInseriti);
+                alert(suntoDelGioco(nums, numInseriti, ng));
                 return punti;
             } 
             
@@ -93,6 +121,7 @@ function game(ng, ngm) {
 
         alert('Hai vinto!');
         console.log(numInseriti);
+        alert(suntoDelGioco(nums, numInseriti, ng));
         return punti;
 }
 
