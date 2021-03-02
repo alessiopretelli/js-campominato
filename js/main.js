@@ -43,42 +43,42 @@ function game(ng, ngm) {
         console.log(j);
         //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
         do {
-                numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
-                v = 0;
+            numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
+            v = 0;
 
-                for (jj = 0; jj < j; jj++) {
-                    
-                    if (numInseriti[j] == numInseriti[jj]) {
-                        alert("Hai gia' inserito questo valore numerico!");
-                        var numDaInserire = [];
+            for (jj = 0; jj < j; jj++) {
+                
+                if (numInseriti[j] == numInseriti[jj]) {
+                    alert("Hai gia' inserito questo valore numerico!");
+                    var numDaInserire = [];
 
-                        for (jjj = 1; jjj <= ng; jjj++) {
-                            v = 0;
+                    for (jjj = 1; jjj <= ng; jjj++) {
+                        v = 0;
 
-                            for (jjjj = 0; jjjj <= numInseriti.length; jjjj++) {
+                        for (jjjj = 0; jjjj <= numInseriti.length; jjjj++) {
 
-                                if (jjj == numInseriti[jjjj]) {
-                                    v = 1;
-                                }
-
-                            }
-
-                            if (v == 0) {
-                                numDaInserire.push(jjj);
+                            if (jjj == numInseriti[jjjj]) {
+                                v = 1;
                             }
 
                         }
 
-                        alert("Puoi inserire i valori numerici: " + numDaInserire + ".");
-                        v = 1;
-                    } 
-        
-                }
-        
-                if ((numInseriti[j] < 1) || (numInseriti[j] > ng) || (isNaN(numInseriti[j]))) {
-                    alert("Il valore numerico inserito e' incorretto! Deve essere un valore numerico tra 1 e " + ng + "!");
+                        if (v == 0) {
+                            numDaInserire.push(jjj);
+                        }
+
+                    }
+
+                    alert("Puoi inserire i valori numerici: " + numDaInserire + ".");
                     v = 1;
-                }
+                } 
+    
+            }
+        
+            if ((numInseriti[j] < 1) || (numInseriti[j] > ng) || (isNaN(numInseriti[j]))) {
+                alert("Il valore numerico inserito e' incorretto! Deve essere un valore numerico tra 1 e " + ng + "!");
+                v = 1;
+            }
         
         } while (v == 1);
         
@@ -121,7 +121,7 @@ switch (lv) {
     case 999:
 
         do {
-            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 10 e maggiore di 500. Piu' e' grande il valore che digiti, piu' punti fai!") * 1;
+            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 10 e maggiore di 500. Piu' e' grande il valore che digiti, piu' punti potresti fare!") * 1;
         } while ((numGame < 10) || (numGame > 500));
 
         do {
