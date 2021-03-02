@@ -10,7 +10,7 @@ function verifyN(num, numss) {
     return false;
 }
 
-function suntoDelGioco(n, ni, g) {
+function suntoDelGioco(n, ni, g, ig) {
     var sdg = [];
 
     for (z = 1; z <= g; z++) {
@@ -18,9 +18,7 @@ function suntoDelGioco(n, ni, g) {
         
         for (zzz = 0; zzz < ni.length; zzz++) {
 
-            if (sdg[z] == ni[zzz]) {
-                    sdg[z] = "[" + z + "]";
-            } else {
+            if (ig == 0) {
 
                 for (zz = 0; zz < n.length; zz++) {
 
@@ -30,6 +28,10 @@ function suntoDelGioco(n, ni, g) {
             
                 }
         
+            }
+            
+            if (sdg[z] == ni[zzz]) {
+                    sdg[z] = "[" + z + "]";
             }
         
         }
@@ -42,8 +44,8 @@ function suntoDelGioco(n, ni, g) {
 function game(ng, ngm) {
         var nums = [];
         var numInseriti = [];
-        var numDaInserire = [];
         var v;
+        var inGame = 1;
         var punti = 0;
 
         //assegnazione valori random e verifica di ripetizione.
@@ -70,33 +72,13 @@ function game(ng, ngm) {
         for (j = 0; j < ng - ngm; j++) {
             //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
             do {
-                numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
+                numInseriti[j] = prompt(suntoDelGioco(nums, numInseriti, ng, inGame)) * 1;
                 v = 0;
 
                 for (jj = 0; jj < j; jj++) {
                     
                     if (numInseriti[j] == numInseriti[jj]) {
                         alert("Hai gia' inserito questo valore numerico!");
-                        var numDaInserire = [];
-
-                        for (jjj = 1; jjj <= ng; jjj++) {
-                            v = 0;
-
-                            for (jjjj = 0; jjjj <= numInseriti.length; jjjj++) {
-
-                                if (jjj == numInseriti[jjjj]) {
-                                    v = 1;
-                                }
-
-                            }
-
-                            if (v == 0) {
-                                numDaInserire.push(jjj);
-                            }
-
-                        }
-
-                        alert("Puoi inserire i valori numerici: " + numDaInserire + ".");
                         v = 1;
                     } 
 
@@ -112,7 +94,8 @@ function game(ng, ngm) {
             if (verifyN(numInseriti[j], nums)) {
                 alert('Ouch! Hai perso.');
                 console.log(numInseriti);
-                alert(suntoDelGioco(nums, numInseriti, ng));
+                inGame = 0;
+                alert(suntoDelGioco(nums, numInseriti, ng, inGame));
                 return punti;
             } 
             
@@ -121,6 +104,7 @@ function game(ng, ngm) {
 
         alert('Hai vinto!');
         console.log(numInseriti);
+        inGame = 0;
         alert(suntoDelGioco(nums, numInseriti, ng));
         return punti;
 }
