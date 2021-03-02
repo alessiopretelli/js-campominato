@@ -10,7 +10,7 @@ function verifyN(num, numss) {
     return false;
 }
 
-function suntoDelGioco(n, ni, g, ig) {
+function schermo(n, ni, g, ig) {
     var sdg = [];
 
     for (z = 1; z <= g; z++) {
@@ -72,7 +72,7 @@ function game(ng, ngm) {
         for (j = 0; j < ng - ngm; j++) {
             //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
             do {
-                numInseriti[j] = prompt(suntoDelGioco(nums, numInseriti, ng, inGame)) * 1;
+                numInseriti[j] = prompt(schermo(nums, numInseriti, ng, inGame)) * 1;
                 v = 0;
 
                 for (jj = 0; jj < j; jj++) {
@@ -95,7 +95,7 @@ function game(ng, ngm) {
                 alert('Ouch! Hai perso.');
                 console.log(numInseriti);
                 inGame = 0;
-                alert(suntoDelGioco(nums, numInseriti, ng, inGame));
+                alert(schermo(nums, numInseriti, ng, inGame));
                 return punti;
             } 
             
@@ -105,7 +105,7 @@ function game(ng, ngm) {
         alert('Hai vinto!');
         console.log(numInseriti);
         inGame = 0;
-        alert(suntoDelGioco(nums, numInseriti, ng));
+        alert(schermo(nums, numInseriti, ng));
         return punti;
 }
 
