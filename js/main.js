@@ -12,93 +12,94 @@ function verifyN(num, numss) {
 }
 
 function game(ng, ngm) {
-    var nums = [];
-    var numInseriti = [];
-    var numDaInserire = [];
-    var v;
-    var punti = 0;
+        var nums = [];
+        var numInseriti = [];
+        var numDaInserire = [];
+        var v;
+        var punti = 0;
 
-    //assegnazione valori random e verifica di ripetizione.
-    for (i = 0; i < ngm; i++) {
+        //assegnazione valori random e verifica di ripetizione.
+        for (i = 0; i < ngm; i++) {
 
-        do {
-            nums[i] = Math.floor(Math.random() * ng) + 1;
-            v = 0;
+            do {
+                nums[i] = Math.floor(Math.random() * ng) + 1;
+                v = 0;
 
-            for (ii = 0; ii < i; ii++) {
+                for (ii = 0; ii < i; ii++) {
 
-                if (nums[i] == nums[ii]) {
-                    v = 1;
+                    if (nums[i] == nums[ii]) {
+                        v = 1;
+                    }
+
                 }
 
-            }
+            } while (v == 1);
 
-        } while (v == 1);
+        }
 
-    }
+        console.log(nums);
 
-    console.log(nums);
+        for (j = 0; j < ng - ngm; j++) {
+            console.log(j);
+            //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
+            do {
+                numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
+                v = 0;
 
-    for (j = 0; j < ng - ngm; j++) {
-        console.log(j);
-        //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
-        do {
-            numInseriti[j] = prompt('Inserire un numero da 1 a ' + ng + '.') * 1;
-            v = 0;
+                for (jj = 0; jj < j; jj++) {
+                    
+                    if (numInseriti[j] == numInseriti[jj]) {
+                        alert("Hai gia' inserito questo valore numerico!");
+                        var numDaInserire = [];
 
-            for (jj = 0; jj < j; jj++) {
-                
-                if (numInseriti[j] == numInseriti[jj]) {
-                    alert("Hai gia' inserito questo valore numerico!");
-                    var numDaInserire = [];
+                        for (jjj = 1; jjj <= ng; jjj++) {
+                            v = 0;
 
-                    for (jjj = 1; jjj <= ng; jjj++) {
-                        v = 0;
+                            for (jjjj = 0; jjjj <= numInseriti.length; jjjj++) {
 
-                        for (jjjj = 0; jjjj <= numInseriti.length; jjjj++) {
+                                if (jjj == numInseriti[jjjj]) {
+                                    v = 1;
+                                }
 
-                            if (jjj == numInseriti[jjjj]) {
-                                v = 1;
+                            }
+
+                            if (v == 0) {
+                                numDaInserire.push(jjj);
                             }
 
                         }
 
-                        if (v == 0) {
-                            numDaInserire.push(jjj);
-                        }
+                        alert("Puoi inserire i valori numerici: " + numDaInserire + ".");
+                        v = 1;
+                    } 
 
-                    }
-
-                    alert("Puoi inserire i valori numerici: " + numDaInserire + ".");
+                }
+            
+                if ((numInseriti[j] < 1) || (numInseriti[j] > ng) || (isNaN(numInseriti[j]))) {
+                    alert("Il valore numerico inserito e' incorretto! Deve essere un valore numerico tra 1 e " + ng + "!");
                     v = 1;
-                } 
-    
-            }
-        
-            if ((numInseriti[j] < 1) || (numInseriti[j] > ng) || (isNaN(numInseriti[j]))) {
-                alert("Il valore numerico inserito e' incorretto! Deve essere un valore numerico tra 1 e " + ng + "!");
-                v = 1;
-            }
-        
-        } while (v == 1);
-        
-        if (verifyN(numInseriti[j], nums)) {
-            alert('Hai perso.');
-            console.log(numInseriti);
-            return punti;
-        } 
-        
-         punti += 1;
-    }
-    
-    alert('Hai vinto!');
-    console.log(numInseriti);
-    return punti;
+                }
+            
+            } while (v == 1);
+            
+            if (verifyN(numInseriti[j], nums)) {
+                alert('Hai perso.');
+                console.log(numInseriti);
+                return punti;
+            } 
+            
+                punti += 1;
+        }
+
+        alert('Hai vinto!');
+        console.log(numInseriti);
+        return punti;
 }
 
 
 //inizio
 var numGame, numGameMine;
+var rematch = 0;
 
 var lv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
 
@@ -135,4 +136,7 @@ switch (lv) {
         numGameMine = 16;
 }
 
-alert('Punti: ' + game(numGame, numGameMine) + '.');
+while (rematch == 0) {
+    alert('Punti: ' + game(numGame, numGameMine) + '.');
+    rematch = prompt("Premi INVIO o inserisci 0 per giocare ancora, oppure inserisci qualsiasi altro tasto per abbandonare.") * 1;
+}
