@@ -12,9 +12,13 @@ function verifyN(num, numss) {
 
 function schermo(n, ni, g, ig) {
     var sdg = [];
+    var dsg = [];
+
+    for (q = 1; q <= g; q++) {
+        sdg[q] = q;
+    }
 
     for (z = 1; z <= g; z++) {
-        sdg[z] = z;
         
         for (zzz = 0; zzz < ni.length; zzz++) {
 
@@ -31,13 +35,91 @@ function schermo(n, ni, g, ig) {
             }
             
             if (sdg[z] == ni[zzz]) {
-                    sdg[z] = "[" + z + "]";
-            }
-        
+                dsg.push(z);
+
+                if (ig == 1) {
+                    
+                    for (y = 0; y < dsg.length; y++) {
+                        var vi = dsg[y];
+                        var vii = dsg[y + 1];
+                        var vf = 0;
+
+                        for (x = dsg[y] - 1; x > 0; x--) {
+                            for (xx = 0; xx < n.length; xx++) {
+
+                                if (sdg[x] == n[xx]) {
+                                    vf += 1;
+                                }
+                        
+                            }
+    
+                        }
+
+                        if ((dsg[y]) - 1 == vf) {
+
+                            for (yy = dsg[y] - 1; yy > 0; yy--){
+                                  
+                                sdg[yy] = "☻";
+
+                            }
+
+                        }
+
+                        vf = 0;
+
+                        for (yy = vi + 1; yy < vii; yy++){
+                            
+                            for (yyy = 0; yyy < n.length; yyy++) {
+
+                                if (sdg[yy] == n[yyy]) {
+                                    vf += 1;
+                                }
+
+                            }
+
+                        }
+
+                        if ((vii - vi) - 1 == vf) {
+
+                            for (yy = vi + 1; yy < vii; yy++){
+                                  
+                                sdg[yy] = "☻";
+
+                            }
+
+                        }
+
+                        for (x = dsg[y] + 1; x <= g; x++) {
+
+                            for (xx = 0; xx < n.length; xx++) {
+
+                                if (x == n[xx]) {
+                                    vf += 1;
+                                }
+                        
+                            }
+    
+                        }
+
+                        if ((g - dsg[y]) == vf) {
+
+                            for (yy = dsg[y] + 1; yy <= g; yy++){
+                                sdg[yy] = "☻";
+                            }
+
+                        }
+
+                    }
+
+                }
+                
+                sdg[z] = "[" + z + "]";
+            } 
+            
         }
-
+        
     }
-
+    
     return sdg;
 }
 
@@ -72,6 +154,27 @@ function game(ng, ngm) {
         for (j = 0; j < ng - ngm; j++) {
             //seconda verifica inserimento valori corretti e ripetizione piu' alert con info su valori da inserire rimanenti.
             do {
+                var endGame = [];
+                var vff = 0;
+                endGame = schermo(nums, numInseriti, ng, inGame);
+                console.log(endGame);
+
+                for (k = 1; k <= ng; k++) {
+
+                        if (endGame[k] == "☻") {
+                            vff += 1;
+                        }
+
+                }
+
+                if (vff == ngm) {
+                    alert('Hai vinto!');
+                    console.log(numInseriti);
+                    inGame = 0;
+                    alert(schermo(nums, numInseriti, ng, inGame));
+                    return punti;            
+                }
+
                 numInseriti[j] = prompt(schermo(nums, numInseriti, ng, inGame)) * 1;
                 v = 0;
 
@@ -105,7 +208,7 @@ function game(ng, ngm) {
         alert('Hai vinto!');
         console.log(numInseriti);
         inGame = 0;
-        alert(schermo(nums, numInseriti, ng));
+        alert(schermo(nums, numInseriti, ng, inGame));
         return punti;
 }
 
