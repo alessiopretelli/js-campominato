@@ -158,7 +158,7 @@ function game(ng, ngm) {
                 var vff = 0;
                 endGame = schermo(nums, numInseriti, ng, inGame);
 
-                for (k = 1; k <= ng; k++) {
+                for (k = 0; k <= ng; k++) {
 
                         if (endGame[k] == "☻") {
                             vff += 1;
@@ -237,7 +237,7 @@ switch (lv) {
     case 999:
 
         do {
-            numGame = prompt("Digita il numero di valori numerici che vuoi inserire. Per non compromettere l'esperienza di gioco, il valore da digitare non deve essere minore di 10 e maggiore di 500. Piu' e' grande il valore che digiti, piu' punti potresti fare!") * 1;
+            numGame = prompt("Digita il numero di caselle che vuoi inserire. Per non compromettere l'esperienza di gioco, le caselle non devono essere minori di 10 e maggiori di 500. Piu' sono le caselle, piu' punti potresti fare!") * 1;
         } while ((numGame < 10) || (numGame > 500));
 
         do {
