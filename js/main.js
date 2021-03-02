@@ -120,7 +120,7 @@ function schermo(n, ni, g, ig) {
         
     }
     
-    return sdg;
+    return sdg.slice(1);
 }
 
 function game(ng, ngm) {
@@ -157,7 +157,6 @@ function game(ng, ngm) {
                 var endGame = [];
                 var vff = 0;
                 endGame = schermo(nums, numInseriti, ng, inGame);
-                console.log(endGame);
 
                 for (k = 1; k <= ng; k++) {
 
@@ -217,7 +216,7 @@ function game(ng, ngm) {
 var numGame, numGameMine;
 var rematch = 0;
 
-var lv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco. Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
+var lv = prompt("Inserire il livello di gioco desiderato, da 0 a 2. Inserire 999 per personalizzare il livello di gioco (consigliato). Nel caso venisse digitato un valore numerico diverso, il livello assegnato di default e' 0.") * 1;
 
 switch (lv) {
      case 0:
@@ -243,7 +242,7 @@ switch (lv) {
 
         do {
             numGameMine = prompt("Digita il numero di mine che vuoi piantare nel gioco. Ricorda che il numero di mine deve essere minore di " + numGame + ".") * 1;
-        } while (numGameMine > numGame - 1);
+        } while ((numGameMine < 1) || (numGameMine > numGame - 1));
 
         break;
 
@@ -254,5 +253,7 @@ switch (lv) {
 
 while (rematch == 0) {
     alert('Punti: ' + game(numGame, numGameMine) + '.');
-    rematch = prompt("Premi INVIO o inserisci 0 per giocare ancora, oppure inserisci qualsiasi altro tasto per abbandonare.") * 1;
+    rematch = prompt("Premi INVIO per giocare ancora, oppure inserisci qualsiasi lettera e poi INVIO per abbandonare o resettare il livello di gioco.") * 1;
 }
+
+alert('Gioco chiuso. Premi F5 per resettare il livello di gioco.');
